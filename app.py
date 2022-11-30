@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify, redirect
 from flask import request
 from asr_inference import ASRInference
 import soundfile as sf 
@@ -30,4 +30,5 @@ def xx():
 
 
 if __name__=="__main__":
+    print('hello')
     app.run(debug=True, port=os.getenv("PORT", default=5000))
