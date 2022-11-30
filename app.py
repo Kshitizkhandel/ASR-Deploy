@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from flask import request
 from asr_inference import ASRInference
 import soundfile as sf 
+import os
 
 app = Flask(__name__, template_folder='templates')
 asr = ASRInference()
@@ -22,6 +23,11 @@ def index():
             audio, fs = sf.read(file)
             text = asr.inference(audio)
     return render_template("upload.html", text = text)
+
+@app.route('/ping')
+def xx():
+    return jsonify({"Choo Choo": "Welcome to your Flask app 🚅"})
+
 
 if __name__=="__main__":
     app.run(debug=True, port=os.getenv("PORT", default=5000))
